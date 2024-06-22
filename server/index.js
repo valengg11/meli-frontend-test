@@ -8,13 +8,12 @@ const PORT = process.env.PORT || 3001;
 app.use(cors({ origin: '*' }));
 app.use(express.json());
 
-// Autor de la aplicación
 const author = {
   name: "Valentina",
   lastname: "Gomez"
 };
 
-// Endpoint para búsqueda de items
+// Endpoint for item search
 app.get('/api/items', async (req, res) => {
   try {
     const { q } = req.query;
@@ -50,7 +49,7 @@ app.get('/api/items', async (req, res) => {
   }
 });
 
-// Endpoint para detalle de un item
+// Endpoint for item detail
 app.get('/api/items/:id', async (req, res) => {
   try {
     const { id } = req.params;
