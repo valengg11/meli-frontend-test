@@ -3,11 +3,13 @@ import { useState, useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
 import { CiDeliveryTruck } from "react-icons/ci";
 import axios from "axios";
-import "./SearchResults.scss";
 import ContentWrapper from "../ContentWrapper/ContentWrapper";
+import { formatPrice } from "../../utils/Utils";
+import "./SearchResults.scss";
 
 function SearchResults() {
-  const [results, setResults] = useState([]);
+  const [items, setItems] = useState([]);
+  const [categories, setCategories] = useState([]);
   const location = useLocation();
 
   useEffect(
@@ -19,7 +21,8 @@ function SearchResults() {
         axios
           .get(`http://localhost:3001/api/items?q=${query}`)
           .then(response => {
-            setResults(response.data.items);
+            setItems(response.data.items);
+            setCategories(response.data.categories);
           })
           .catch(error => console.error("Error fetching results:", error));
       }
@@ -28,20 +31,19 @@ function SearchResults() {
   );
 
   return (
-    <ContentWrapper>
+    <ContentWrapper categories={categories}>
       <ul className="search-results">
-        {results.map(item =>
+        {items.map(item =>
           <li key={item.id}>
             <Link to={`/items/${item.id}`}>
               <img src={item.picture} alt={item.title} />
               <div className="info-container">
                 <div>
-                  <h3>
-                    $ {new Intl.NumberFormat("es-AR").format(item.price.amount)}
+                  <span>
+                    $ {formatPrice(item.price.amount)}
                     {item.free_shipping && <CiDeliveryTruck />}
-                  </h3>
+                  </span>
                 </div>
-
                 <p>
                   {item.title} {item.condition === "new" ? "Nuevo" : "Usado"}
                 </p>

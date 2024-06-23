@@ -9,13 +9,18 @@ function SearchBox() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  useEffect(() => {
-    const searchParams = new URLSearchParams(location.search);
-    const query = searchParams.get("search");
-    if (query) {
-      setQuery(query);
-    }
-  }, [location.search]);
+  useEffect(
+    () => {
+      const searchParams = new URLSearchParams(location.search);
+      const query = searchParams.get("search");
+      if (query) {
+        setQuery(query);
+      } else {
+        setQuery("");
+      }
+    },
+    [location]
+  );
 
   const handleSubmit = e => {
     e.preventDefault();
