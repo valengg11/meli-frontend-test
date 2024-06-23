@@ -1,0 +1,16 @@
+@import '../../styles/main';
+
+.button {
+  background: #3583fa;
+  color: $tertiary-color;
+  border: none;
+  border-radius: 4px;
+  font-size: 18px;
+  padding: 10px;
+  margin-top: 50px;
+  cursor: pointer;
+
+  &:hover {
+    background: darken(#3583fa, 10%);
+  }
+}

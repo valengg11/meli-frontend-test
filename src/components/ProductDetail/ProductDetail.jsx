@@ -2,22 +2,14 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import ContentWrapper from "../ContentWrapper/ContentWrapper";
-import { formatPrice, getRandomSoldAmount } from "../../utils/Utils";
+import { DEFAULT_PRODUCT_DESCRIPTION, formatPrice } from "../../utils/Utils";
 import "./ProductDetail.scss";
+import Button from "../Button/Button";
 
 function ProductDetail() {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const { id } = useParams();
-
-  const DEFAULT_PRODUCT_DESCRIPTION = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-  Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis 
-  nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure 
-  dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur 
-  sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est 
-  laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla aliquet porttitor venenatis.
-  Donec a dui et dui fringilla consectetur id nec massa. Aliquam erat volutpat. Sed ut dui ut lacus 
-  dictum fermentum vel tincidunt neque. Sed sed lacinia lectus. Duis sit amet sodales felis.`;
 
   useEffect(
     () => {
@@ -33,10 +25,8 @@ function ProductDetail() {
     [id]
   );
 
-  if (loading) return <div>Cargando...</div>;
-  if (!product) return <div>Producto no encontrado</div>;
+  if (loading) return <div className="alert">Cargando...</div>;
 
-  console.log(product);
   return (
     <ContentWrapper>
       <div className="product-detail-container">
@@ -63,7 +53,7 @@ function ProductDetail() {
           <span>
             $ {formatPrice(product.price.amount)}
           </span>
-          <button>Comprar</button>
+          <Button onClick={() => alert("Clicked!")} text="Comprar"/>
         </div>
       </div>
     </ContentWrapper>
