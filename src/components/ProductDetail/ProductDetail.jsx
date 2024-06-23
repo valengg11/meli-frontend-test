@@ -1,5 +1,9 @@
+import ContentWrapper from "../ContentWrapper/ContentWrapper";
+
 function ProductDetail() {
-  return <h1>Product Detail</h1>;
+  return (
+    <ContentWrapper></ContentWrapper>
+  )
 }
 
 export default ProductDetail;

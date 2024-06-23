@@ -1,0 +1,16 @@
+@import '../../styles/main';
+
+.content-wrapper {
+  @include flex-center;
+  background: $secondary-color;
+  height: 100vh;
+  padding: 40px 0;
+
+  .content-container {
+    background: $tertiary-color;
+    width: 70%;
+    height: fit-content;
+    border-radius: 6px;
+    box-shadow: $shadow;
+  }
+}

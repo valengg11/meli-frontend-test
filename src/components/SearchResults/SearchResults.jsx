@@ -4,6 +4,7 @@ import { useLocation, Link } from "react-router-dom";
 import { CiDeliveryTruck } from "react-icons/ci";
 import axios from "axios";
 import "./SearchResults.scss";
+import ContentWrapper from "../ContentWrapper/ContentWrapper";
 
 function SearchResults() {
   const [results, setResults] = useState([]);
@@ -27,8 +28,8 @@ function SearchResults() {
   );
 
   return (
-    <div className="search-results">
-      <ul>
+    <ContentWrapper>
+      <ul className="search-results">
         {results.map(item =>
           <li key={item.id}>
             <Link to={`/items/${item.id}`}>
@@ -49,7 +50,7 @@ function SearchResults() {
           </li>
         )}
       </ul>
-    </div>
+    </ContentWrapper>
   );
 }
 
