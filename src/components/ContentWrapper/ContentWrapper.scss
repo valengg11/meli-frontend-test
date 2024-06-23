@@ -21,3 +21,28 @@
     margin: 0 auto;
   }
 }
+
+@media (max-width: 768px) {
+  .content-wrapper {
+    .categories {
+      width: 90%;
+    }
+
+    .content-container {
+      width: 90%;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .content-wrapper {
+    .categories {
+      width: 95%;
+      font-size: 14px;
+    }
+
+    .content-container {
+      width: 95%;
+    }
+  }
+}
