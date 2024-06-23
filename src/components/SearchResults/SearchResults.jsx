@@ -32,26 +32,26 @@ function SearchResults() {
 
   return (
     <ContentWrapper categories={categories}>
-      <ul className="search-results">
+      <div className="search-results">
         {items.map(item =>
-          <li key={item.id}>
-            <Link to={`/items/${item.id}`}>
+          <Link to={`/items/${item.id}`} key={item.id}>
+            <div className="product-picture-container">
               <img src={item.picture} alt={item.title} />
-              <div className="info-container">
-                <div>
-                  <span>
-                    $ {formatPrice(item.price.amount)}
-                    {item.free_shipping && <CiDeliveryTruck />}
-                  </span>
-                </div>
-                <p>
-                  {item.title} {item.condition === "new" ? "Nuevo" : "Usado"}
-                </p>
+            </div>
+            <div className="info-container">
+              <div>
+                <span>
+                  $ {formatPrice(item.price.amount)}
+                  {item.free_shipping && <CiDeliveryTruck />}
+                </span>
               </div>
-            </Link>
-          </li>
+              <p>
+                {item.title} {item.condition === "new" ? "Nuevo" : "Usado"}
+              </p>
+            </div>
+          </Link>
         )}
-      </ul>
+      </div>
     </ContentWrapper>
   );
 }
