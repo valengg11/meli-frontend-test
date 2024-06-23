@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
 import logo from "../../assets/meli-logo.png";
 import "./SearchBox.scss";
@@ -7,6 +7,15 @@ import "./SearchBox.scss";
 function SearchBox() {
   const [query, setQuery] = useState("");
   const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    const query = searchParams.get("search");
+    if (query) {
+      setQuery(query);
+    }
+  }, [location.search]);
 
   const handleSubmit = e => {
     e.preventDefault();

@@ -7,12 +7,19 @@ import ProductDetail from './components/ProductDetail/ProductDetail';
 function App() {
   return (
     <Router>
+      <SearchBox/>
       <Routes>
-        <Route path="/" element={<SearchBox />} />
+        <Route path="/" element={<Home />} />
         <Route path="/items" element={<SearchResults />} />
         <Route path="/items/:id" element={<ProductDetail />} />
       </Routes>
     </Router>
+  );
+}
+
+function Home() {
+  return (
+    <></>
   );
 }
 

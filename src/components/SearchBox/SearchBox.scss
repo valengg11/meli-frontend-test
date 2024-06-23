@@ -3,12 +3,12 @@
 .search-box {
   @include flex-center;
   background-color: $primary-color;
-  padding: 10px;
+  padding: 10px 0;
 
   div {
     @include flex-center;
     height: 40px;
-    width: 100%;
+    width: 70%;
 
     img {
         height: 100%;
@@ -18,7 +18,7 @@
 
   input[type="text"] {
     height: 100%;
-    width: 70%;
+    width: 100%;
     padding: 10px;
     font-size: 16px;
     border: none;
@@ -34,7 +34,6 @@
     height: 100%;
     width: 42px;
     background-color: $secondary-color;
-    color: white;
     border: none;
     border-radius: 0 3px 3px 0;
     box-shadow: $shadow;
