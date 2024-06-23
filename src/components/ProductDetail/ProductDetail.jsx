@@ -32,7 +32,7 @@ function ProductDetail() {
       <div className="product-detail-container">
         <div className="product-description-container">
           <div className="product-picture-container">
-            <img src={product.picture} />
+            <img src={product.picture} alt={product.title} />
           </div>
 
           <h3>Descripción del producto</h3>
@@ -53,7 +53,7 @@ function ProductDetail() {
           <span>
             $ {formatPrice(product.price.amount)}
           </span>
-          <Button onClick={() => alert("Clicked!")} text="Comprar"/>
+          <Button onClick={() => alert("Clicked!")} text="Comprar" />
         </div>
       </div>
     </ContentWrapper>

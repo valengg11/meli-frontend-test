@@ -30,6 +30,9 @@ function SearchResults() {
     [location]
   );
 
+  if (items.length == 0)
+    return <div className="alert">No hay coincidencias. Intenta de nuevo.</div>;
+
   return (
     <ContentWrapper categories={categories}>
       <div className="search-results">

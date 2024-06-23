@@ -4,6 +4,11 @@
 @import 'base';
 
 body {
-    font-family: $font-family;
-    background: $secondary-color;
+  font-family: $font-family;
+  background: $secondary-color;
+}
+
+.alert {
+  margin: 30px;
+  font-size: 20px;
 }

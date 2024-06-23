@@ -11,8 +11,9 @@
     width: 70%;
 
     img {
-        height: 100%;
-        margin-right: 20px;
+      height: 100%;
+      margin: auto 0;
+      margin-right: 20px;
     }
   }
 
@@ -46,6 +47,57 @@
 
     &:hover {
       background-color: darken($secondary-color, 10%);
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .search-box {
+    padding: 10px;
+
+    div {
+      width: 90%;
+
+      img {
+        height: 80%;
+        margin-right: 10px;
+      }
+    }
+
+    input[type="text"] {
+      font-size: 14px;
+    }
+
+    button {
+      width: 36px;
+
+      svg {
+        font-size: 16px;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .search-box {
+    div {
+      width: 100%;
+
+      img {
+        height: 60%;
+      }
+    }
+
+    input[type="text"] {
+      font-size: 12px;
+    }
+
+    button {
+      width: 32px;
+
+      svg {
+        font-size: 14px;
+      }
     }
   }
 }
