@@ -4,12 +4,15 @@ import { useLocation, Link } from "react-router-dom";
 import { CiDeliveryTruck } from "react-icons/ci";
 import axios from "axios";
 import ContentWrapper from "../ContentWrapper/ContentWrapper";
+import Loader from "../Loader/Loader";
 import { formatPrice } from "../../utils/Utils";
 import "./SearchResults.scss";
 
 function SearchResults() {
   const [items, setItems] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   const location = useLocation();
 
   useEffect(
@@ -18,20 +21,43 @@ function SearchResults() {
       const query = searchParams.get("search");
 
       if (query) {
+        setLoading(true);
+        setError(null);
         axios
           .get(`http://localhost:3001/api/items?q=${query}`)
           .then(response => {
             setItems(response.data.items);
             setCategories(response.data.categories);
           })
-          .catch(error => console.error("Error fetching results:", error));
+          .catch(error => {
+            console.error("Error fetching results:", error);
+            setError(
+              "Hubo un error al buscar los productos. Por favor, intenta de nuevo."
+            );
+          })
+          .finally(() => {
+            setLoading(false);
+          });
       }
     },
     [location]
   );
 
-  if (items.length == 0)
+  if (loading) {
+    return <Loader />;
+  }
+
+  if (error) {
+    return (
+      <div className="alert error">
+        {error}
+      </div>
+    );
+  }
+
+  if (items.length === 0) {
     return <div className="alert">No hay coincidencias. Intenta de nuevo.</div>;
+  }
 
   return (
     <ContentWrapper categories={categories}>

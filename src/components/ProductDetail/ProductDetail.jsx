@@ -5,27 +5,45 @@ import ContentWrapper from "../ContentWrapper/ContentWrapper";
 import { DEFAULT_PRODUCT_DESCRIPTION, formatPrice } from "../../utils/Utils";
 import "./ProductDetail.scss";
 import Button from "../Button/Button";
+import Loader from "../Loader/Loader";
 
 function ProductDetail() {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const { id } = useParams();
 
   useEffect(
     () => {
       setLoading(true);
+      setError(null);
       axios
         .get(`http://localhost:3001/api/items/${id}`)
         .then(response => {
           setProduct(response.data.item);
         })
-        .catch(error => console.error("Error fetching product details:", error))
+        .catch(error => {
+          console.error("Error fetching product details:", error);
+          setError(
+            "No se encontró el producto."
+          );
+        })
         .finally(() => setLoading(false));
     },
     [id]
   );
 
-  if (loading) return <div className="alert">Cargando...</div>;
+  if (loading) {
+    return <Loader />;
+  }
+
+  if (error) {
+    return (
+      <div className="alert error">
+        {error}
+      </div>
+    );
+  }
 
   return (
     <ContentWrapper>
