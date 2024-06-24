@@ -3,9 +3,10 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import ContentWrapper from "../ContentWrapper/ContentWrapper";
 import { DEFAULT_PRODUCT_DESCRIPTION, formatPrice } from "../../utils/Utils";
-import "./ProductDetail.scss";
 import Button from "../Button/Button";
 import Loader from "../Loader/Loader";
+
+import "./ProductDetail.scss";
 
 function ProductDetail() {
   const [product, setProduct] = useState(null);

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useLocation, Link } from "react-router-dom";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { CiDeliveryTruck } from "react-icons/ci";
@@ -6,11 +6,13 @@ import axios from "axios";
 import ContentWrapper from "../ContentWrapper/ContentWrapper";
 import Loader from "../Loader/Loader";
 import { formatPrice } from "../../utils/Utils";
+import {CategoriesContext} from "../../contexts/CategoriesContext";
+
 import "./SearchResults.scss";
 
 function SearchResults() {
+  const { categories, setCategories } = useContext(CategoriesContext);
   const [items, setItems] = useState([]);
-  const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const location = useLocation();

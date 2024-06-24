@@ -1,10 +1,16 @@
+import {useContext} from "react";
+import {CategoriesContext} from "../../contexts/CategoriesContext";
+
 import "./ContentWrapper.scss";
 
-function ContentWrapper({ children, categories }) {
+function ContentWrapper({ children }) {
+  const { categories } = useContext(CategoriesContext);
   return (
     <div className="content-wrapper">
       <div className="categories">
-        {categories && categories.map(cat => <p key={cat}>{`${cat}>`}</p>)}
+        <p>
+          {categories && categories.join(" > ")}
+        </p>
       </div>
       <div className="content-container">
         {children}
