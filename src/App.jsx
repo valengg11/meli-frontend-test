@@ -1,11 +1,11 @@
-import React, { Suspense, lazy } from 'react';
+import React, { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Loader from './components/Loader/Loader';
 import SearchBox from './components/SearchBox/SearchBox';
 import {CategoriesProvider} from './contexts/CategoriesContext';
 
-const SearchResults = lazy(() => import('./components/SearchResults/SearchResults'));
-const ProductDetail = lazy(() => import('./components/ProductDetail/ProductDetail'));
+const SearchResultsPage = lazy(() => import('./pages/SearchResultsPage'));
+const ProductDetailPage = lazy(() => import('./pages/ProductDetailPage'));
 
 function App() {
   return (
@@ -15,10 +15,11 @@ function App() {
         <Suspense fallback={<Loader />}>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/items" element={<SearchResults />} />
-            <Route path="/items/:id" element={<ProductDetail />} />
+            <Route path="/items" element={<SearchResultsPage />} />
+            <Route path="/items/:id" element={<ProductDetailPage />} />
           </Routes>
         </Suspense>
+          
       </Router> 
     </CategoriesProvider>
   );

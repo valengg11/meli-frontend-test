@@ -1,72 +1,15 @@
-import { useState, useEffect, useContext } from "react";
-import { useLocation, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { CiDeliveryTruck } from "react-icons/ci";
-import axios from "axios";
 import ContentWrapper from "../ContentWrapper/ContentWrapper";
-import Loader from "../Loader/Loader";
 import { formatPrice } from "../../utils/Utils";
-import {CategoriesContext} from "../../contexts/CategoriesContext";
+import { CategoriesContext } from "../../contexts/CategoriesContext";
 
 import "./SearchResults.scss";
+import {useContext} from "react";
 
-function SearchResults() {
-  const { categories, setCategories } = useContext(CategoriesContext);
-  const [items, setItems] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const location = useLocation();
-
-  useEffect(
-    () => {
-      const searchParams = new URLSearchParams(location.search);
-      const query = searchParams.get("search");
-
-      if (query) {
-        setLoading(true);
-        setError(null);
-        setItems([]);
-        axios
-          .get(`http://localhost:3001/api/items?q=${query}`)
-          .then(response => {
-            setItems(response.data.items);
-            setCategories(response.data.categories);
-          })
-          .catch(error => {
-            console.error("Error fetching results:", error);
-            setError(
-              "Hubo un error al buscar los productos. Por favor, intenta de nuevo."
-            );
-          })
-          .finally(() => {
-            setLoading(false);
-          });
-      } else {
-        setItems([]);
-        setCategories([]);
-        setLoading(false);
-        setError(null);
-      }
-    },
-    [location]
-  );
-
-  if (loading) {
-    return <Loader />;
-  }
-
-  if (error) {
-    return (
-      <div className="alert">
-        {error}
-      </div>
-    );
-  }
-
-  if (items.length === 0) {
-    return <div className="alert">No hay coincidencias. Intenta de nuevo.</div>;
-  }
-
+function SearchResults({ items }) {
+  const { categories} = useContext(CategoriesContext);
   return (
     <ContentWrapper categories={categories}>
       <div className="search-results">
