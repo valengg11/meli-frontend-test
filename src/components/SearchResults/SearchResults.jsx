@@ -23,6 +23,7 @@ function SearchResults() {
       if (query) {
         setLoading(true);
         setError(null);
+        setItems([]);
         axios
           .get(`http://localhost:3001/api/items?q=${query}`)
           .then(response => {
@@ -38,6 +39,11 @@ function SearchResults() {
           .finally(() => {
             setLoading(false);
           });
+      } else {
+        setItems([]);
+        setCategories([]);
+        setLoading(false);
+        setError(null);
       }
     },
     [location]
@@ -49,7 +55,7 @@ function SearchResults() {
 
   if (error) {
     return (
-      <div className="alert error">
+      <div className="alert">
         {error}
       </div>
     );
