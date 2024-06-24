@@ -8,7 +8,7 @@ import Loader from "../Loader/Loader";
 
 import "./ProductDetail.scss";
 
-function ProductDetail({product}) {
+function ProductDetail({ product }) {
   return (
     <ContentWrapper>
       <div className="product-detail-container">
@@ -32,10 +32,12 @@ function ProductDetail({product}) {
           <h2>
             {product.title}
           </h2>
+          {product.free_shipping &&
+            <p className="free_shipping">Envío Gratis</p>}
           <span>
             $ {formatPrice(product.price.amount)}
           </span>
-          <Button onClick={() => alert("Clicked!")} text="Comprar"/>
+          <Button onClick={() => alert("Clicked!")} text="Comprar" />
         </div>
       </div>
     </ContentWrapper>
