@@ -1,6 +1,6 @@
-// src/components/SearchResults.jsx
 import { useState, useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import { CiDeliveryTruck } from "react-icons/ci";
 import axios from "axios";
 import ContentWrapper from "../ContentWrapper/ContentWrapper";
@@ -71,7 +71,11 @@ function SearchResults() {
         {items.map(item =>
           <Link to={`/items/${item.id}`} key={item.id}>
             <div className="product-picture-container">
-              <img src={item.picture} alt={item.title} />
+              <LazyLoadImage
+                src={`${item.picture}.webp`}
+                alt={item.title}
+                height="180px"
+              />
             </div>
             <div className="info-container">
               <div>

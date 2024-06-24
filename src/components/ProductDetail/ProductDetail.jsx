@@ -24,9 +24,7 @@ function ProductDetail() {
         })
         .catch(error => {
           console.error("Error fetching product details:", error);
-          setError(
-            "No se encontró el producto."
-          );
+          setError("No se encontró el producto.");
         })
         .finally(() => setLoading(false));
     },
@@ -50,7 +48,7 @@ function ProductDetail() {
       <div className="product-detail-container">
         <div className="product-description-container">
           <div className="product-picture-container">
-            <img src={product.picture} alt={product.title} />
+            <img src={`${product.picture}.webp`} alt={product.title} />
           </div>
 
           <h3>Descripción del producto</h3>
@@ -71,7 +69,7 @@ function ProductDetail() {
           <span>
             $ {formatPrice(product.price.amount)}
           </span>
-          <Button onClick={() => alert("Clicked!")} text="Comprar" />
+          <Button onClick={() => alert("Clicked!")} text="Comprar"/>
         </div>
       </div>
     </ContentWrapper>

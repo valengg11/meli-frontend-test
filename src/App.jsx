@@ -1,18 +1,23 @@
-// src/App.jsx
+import React, { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Loader from './components/Loader/Loader';
 import SearchBox from './components/SearchBox/SearchBox';
-import SearchResults from './components/SearchResults/SearchResults';
-import ProductDetail from './components/ProductDetail/ProductDetail';
+
+const SearchResults = lazy(() => import('./components/SearchResults/SearchResults'));
+const ProductDetail = lazy(() => import('./components/ProductDetail/ProductDetail'));
 
 function App() {
   return (
     <Router>
       <SearchBox/>
-      <Routes>
+      <Suspense fallback={<Loader />}>
+        <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/items" element={<SearchResults />} />
         <Route path="/items/:id" element={<ProductDetail />} />
       </Routes>
+      </Suspense>
+      
     </Router>
   );
 }

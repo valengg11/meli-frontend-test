@@ -32,14 +32,14 @@ function SearchBox() {
   return (
     <form onSubmit={handleSubmit} className="search-box">
       <div>
-        <img src={logo} />
+        <img src={logo} alt="mercado-libre-logo"/>
         <input
           type="text"
           value={query}
           onChange={e => setQuery(e.target.value)}
           placeholder="Nunca dejes de buscar"
         />
-        <button type="submit">
+        <button type="submit" aria-label="buscar">
           <FaSearch />
         </button>
       </div>
